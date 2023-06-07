@@ -3,27 +3,38 @@
 // [1 2 3 4 5] -> 5 8 3
 // [6 7 3 6] -> 36 21
 
+int GetLength() 
+{     
+    Console.WriteLine("Введите длину");     
+    int length = Convert.ToInt32(Console.ReadLine());     
+    return length; 
+} 
+
+int length = GetLength();
+
+
 int[] GetArray() 
 {     
-    int[] array = new int[5];     
-    for (int i = 0; i < 5; i++) 
+    int[] array = new int[length];     
+    for (int i = 0; i < length; i++) 
     {         
         array[i] = new Random().Next(1, 10);     
     }     
     return array; 
 } 
 
-int[] array = GetArray(); 
 
-int[] NewArray(int[] array)
+void NewArray(int[] array)
 {
-    int[] result = new int[array];
-    for(int i = 0; i < result.Length; i++)
+    int result = 0;
+    for(int i = 0; i < length-1; i++)
         {
-        result[i] = (result[i] * result[result.Length - 1]);
+           result = (array[i] * array[length-1]);
+           length = length-1;
+           Console.Write(result + " ");
         }
-    return result;
 }
 
-int[] newarray = NewArray();
-Console.WriteLine(String.Join(", ", newarray)); 
+int[] array = GetArray(); 
+Console.WriteLine(String.Join(", ", array)); 
+NewArray(array);
